@@ -23,7 +23,14 @@ def earliest_ancestor(ancestors, starting_node):
     for each_group in ancestors:
         ancestor_graph.add_edge(each_group[1], each_group[0])
 
-    ancestor = ancestor_graph.dft(starting_node)
+    ancestor = ancestor_graph.earliest(starting_node)
+
+    # if return ancestor is itself because there is no parent
+    if ancestor[-1] == starting_node:
+        return -1
+    else:
+        # otherwise return earliest ancestor
+        return ancestor[-1]
 
 
 list_of_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7),
